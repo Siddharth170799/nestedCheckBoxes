@@ -1,0 +1,75 @@
+[
+    {
+        "id": 1,
+        "name": "Parent1",
+        "isNested": true,
+        "isChecked": false,
+        "children": [
+            {
+                "id": 2,
+                "parentId": [1],
+                "name": "Child1",
+                "isNested": true,
+                "isChecked": false,
+                "level": 0,
+                "child": true,
+               
+                "children": [
+                    {
+                        "id": 6,
+                        "name": "Child of child1",
+                        "parentId": [1,2],
+                        "isNested": true,
+                        "isChecked": false,
+                        "level": 1,
+                        "child": true,
+                        "children": [
+                            {
+                                "id": 7,
+                                "name": "grand Child of child1",
+                                "parentId": [1,2,6],
+                                "isNested": false,
+                                "isChecked": false,
+                                "children": [{
+
+                                    "id": 8,
+                                    "name": "Child of child1",
+                                    "parentId": [1,2,6,7],
+                                    "isNested": false,
+                                    "isChecked": false,
+                                  
+                                    "child": true,
+                                    "children":[]
+
+
+                                }],
+                                "child": true
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "name": "Child2",
+                "isNested": false,
+                "isChecked": false,
+                "child": true,
+                "level": 0,
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "Parent2",
+        "isNested": false,
+        "isChecked": false
+    },
+    {
+        "id": 5,
+        "name": "Parent3",
+        "isNested": false,
+        "isChecked": false
+    }
+]
