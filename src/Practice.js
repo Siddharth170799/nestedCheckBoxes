@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import data1 from "./data.json";
 
 const List = ({ data, level = 0, toggleCheckBox }) => {
-  console.log(data);
+
   return (
     <div style={{ paddingLeft: level * 20 }}>
       {data.map((item) => (
@@ -37,10 +37,10 @@ const Practice = () => {
         if (item.id == id || item?.parentId?.includes(id)) {
           return {
             ...item,
-            isChecked: true,
+            isChecked: !item.isChecked,
             children: item?.children?.map((child) => ({
               ...child,
-              isChecked: true,
+              isChecked: !item.isChecked,
               children: updateList(child?.children),
             })),
           };
