@@ -1,0 +1,69 @@
+[
+    {
+        "id": "1",
+        "name": "Parent",
+        "isChecked": false,
+        "childIds": [
+            "2",
+            "6"
+        ],
+        "children": [
+            {
+                "id": "2",
+                "name": "Child",
+                "isChecked": false,
+                "parentIds": [
+                    "1"
+                ],
+                "childIds": [
+                    "3"
+                ],
+                "children": [
+                    {
+                        "id": "3",
+                        "name": "GrandChild",
+                        "isChecked": false,
+                        "childIds": [
+                            "4"
+                        ],
+                        "children": [
+                            {
+                                "id": "4",
+                                "name": "grand grand child",
+                                "isChecked": false,
+                                "parentIds": [
+                                    "2",
+                                    "3"
+                                ],
+                                "childIds": [
+                                    "5"
+                                ],
+                                "children": [
+                                    {
+                                        "id": "5",
+                                        "name": "grand grand  grand child",
+                                        "isChecked": false,
+                                        "parentIds": [
+                                            "2",
+                                            "3",
+                                            "4"
+                                        ],
+                                        "children": []
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "id": "6",
+                "name": "Child",
+                "isChecked": false,
+                "parentIds": [
+                    "1"
+                ]
+            }
+        ]
+    }
+]

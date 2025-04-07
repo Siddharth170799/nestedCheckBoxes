@@ -94,24 +94,24 @@
 // export default Practice;
 
 import React, { useEffect, useState } from "react";
-import data1 from "./data.json";
+import data1 from "./data2.json";
 
 const List = ({ data, level = 0, toggleCheckBox }) => {
   return (
     <div style={{ paddingLeft: level * 20 }}>
       {data.map((item) => (
-        <div key={item.id} style={{ marginBottom: "8px" }}>
+        <div key={item?.id} style={{ marginBottom: "8px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <input
               type="checkbox"
-              checked={item.isChecked}
+              checked={item?.isChecked}
               onChange={(e) => toggleCheckBox(item.id, e)}
             />
-            <span>{item.name}</span>
+            <span>{item?.name}</span>
           </div>
-          {item.children && (
+          {item?.children && (
             <List
-              data={item.children}
+              data={item?.children}
               toggleCheckBox={toggleCheckBox}
               level={level + 1}
             />
@@ -126,16 +126,15 @@ const Practice = () => {
   const [data, setData] = useState(data1);
   const [parentids, setParentid] = useState([]);
   const [button, setButton] = useState(true);
-  
+  const [obj, setObj] = useState({});
 
   const toggleCheckBox = (id, e) => {
     if (e.target.checked) {
-      
       setButton(!button);
       const updateList = (data) => {
         return data?.map((item) => {
-          if (item.id == id || item?.parentId?.includes(id)) {
-            setParentid([...parentids, id]);
+          if (item?.id == id || item?.parentId?.includes(id)) {
+          setObj({...obj,[item.id] : item.childIds})
             return {
               ...item,
               isChecked: true,
@@ -148,7 +147,7 @@ const Practice = () => {
           } else if (item?.children) {
             return {
               ...item,
-              children: updateList(item.children),
+              children: updateList(item?.children),
             };
           } else {
             return item;
@@ -157,12 +156,10 @@ const Practice = () => {
       };
       setData(updateList(data));
     } else {
-   
       setButton(!button);
       const updateList = (data) => {
         return data?.map((item) => {
           if (item.id == id || item?.parentId?.includes(id)) {
-            setParentid([...parentids, id]);
             return {
               ...item,
               isChecked: false,
@@ -189,25 +186,30 @@ const Practice = () => {
   const checking = () => {
     const updateList = (items) => {
       return items?.map((item) => {
-        if (item?.children?.every((item1) => item1.isChecked)) {
-          return {...item, isChecked: true };
-        } else {
-          return {
-            ...item,
-            children: updateList(item.children),
-          };
-        }
+        // if (item?.children?.every((item1) => item1.isChecked)) {
+        //   return {
+        //     ...item,
+        //     isChecked: true,
+        //   };
+        // } else {
+        //   return {
+        //     ...item,
+        //     children: updateList(item.children),
+        //   };
+        // }
+
+
       });
     };
 
     const updatedData = updateList(data);
-    setData(updatedData);
+    // setData(updatedData);
   };
 
   useEffect(() => {
     checking();
   }, [button]);
-
+  console.log(parentids);
   return (
     <div>
       <h2>Hierarchical List</h2>
