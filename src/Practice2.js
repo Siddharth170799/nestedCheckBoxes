@@ -93,7 +93,7 @@ const Practice2 = () => {
           }
         });
       } else {
-        setNewObj((prev) => {
+        setNewObj(() => {
           return {};
         });
         return data.map((item1) => {
@@ -118,6 +118,56 @@ const Practice2 = () => {
     setData(check(data));
   };
 
+  // const checking = () => {
+  //   const updateList = (items) => {
+  //     if (E?.target?.checked) {
+  //       return items?.map((item) => {
+  //         if (
+  //           item?.childIds?.every((item1) =>
+  //             newObj[item?.id]?.includes(item1)
+  //           ) ||
+  //           obj["key"]?.every((item1) => item?.childIds?.includes(item1)) ||
+  //           obj["key"]?.includes(item?.id)
+  //         ) {
+  //           return {
+  //             ...item,
+  //             isChecked: true,
+  //             children: updateList(item.children),
+  //           };
+  //         } else if (item?.children) {
+  //           return {
+  //             ...item,
+  //             children: updateList(item?.children),
+  //           };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //     } else {
+  //       return items?.map((item) => {
+  //         if (
+  //           item?.childIds?.every((item1) => newObj[item?.id]?.includes(item1))
+  //         ) {
+  //           return {
+  //             ...item,
+  //             isChecked: false,
+  //             children: updateList(item.children),
+  //           };
+  //         } else if (item?.children) {
+  //           return {
+  //             ...item,
+  //             children: updateList(item?.children),
+  //           };
+  //         } else {
+  //           return item;
+  //         }
+  //       });
+  //     }
+  //   };
+
+  //   const updatedData = updateList(data);
+  //   setData(updatedData);
+  // };
   const checking = () => {
     const updateList = (items) => {
       if (E?.target?.checked) {
@@ -146,7 +196,11 @@ const Practice2 = () => {
       } else {
         return items?.map((item) => {
           if (
-            item?.childIds?.every((item1) => newObj[item?.id]?.includes(item1))
+            item?.childIds?.every((item1) =>
+              newObj[item?.id]?.includes(item1)
+            ) ||
+            obj["key"]?.every((item1) => item?.childIds?.includes(item1)) ||
+            obj["key"]?.includes(item?.id)
           ) {
             return {
               ...item,
@@ -164,15 +218,16 @@ const Practice2 = () => {
         });
       }
     };
-
+  
     const updatedData = updateList(data);
     setData(updatedData);
   };
-
+  
   useEffect(() => {
     checking();
   }, [button]);
   console.log(obj);
+  console.log(newObj)
   return (
     <div>
       <h2>Hierarchical List</h2>
